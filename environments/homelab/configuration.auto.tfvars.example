@@ -1,0 +1,39 @@
+proxmox_api_url          = "https://192.168.2.100:8006/api2/json"
+proxmox_api_token_id     = "root@pam!opentofu"
+proxmox_api_token_secret = "token"
+proxmox_target_node      = "pve01"
+proxmox_storage_device   = "local"
+
+talos_version      = "1.13.3"
+kubernetes_version = "1.32.3"
+talos_iso_filename = "nocloud-amd64.iso"
+
+cluster_name          = "k8s-homelab"
+cluster_vip_shared_ip = "192.168.2.150"
+
+node_data = {
+  controlplanes = {
+    "192.168.2.151" = {
+      install_disk  = "/dev/vda"
+      install_image = "factory.talos.dev/nocloud-installer/376567988ad370138ad8b2698212367b8edcb69b5fd68c80be1f2ec7d603b4ba:v1.13.3"
+      hostname      = "talos-cp1"
+    }
+    "192.168.2.152" = {
+        install_disk = "/dev/vda"
+        install_image = ""
+        hostname = "talos-cp2"
+    }
+    "192.168.2.153" = {
+        install_disk = "/dev/vda"
+        install_image = ""
+        hosname = "talos-cp3"
+    }
+  }
+  workers = {}
+}
+
+network_gateway                   = "192.168.2.1"
+network_prefix                    = 24
+dns_server                        = "192.168.2.1"
+vlan_tag                          = 0
+allow_scheduling_on_controlplanes = true
