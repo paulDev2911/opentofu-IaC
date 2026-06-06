@@ -1,0 +1,28 @@
+machine:
+  install:
+    disk: ${install_disk}
+    image: ${install_image}
+  network:
+    hostname: ${hostname}
+    nameservers:
+      - ${dns}
+    interfaces:
+      - deviceSelector:
+          physical: true
+        addresses:
+          - ${ip_address}/${network_prefix}
+        routes:
+          - network: 0.0.0.0/0
+            gateway: ${network_gateway}
+        vip:
+          ip: ${vip_shared_ip}
+  features:
+    hostDNS:
+      forwardKubeDNSToHost: false
+cluster:
+  allowSchedulingOnControlPlanes: ${allow_scheduling_on_controlplanes}
+  network:
+    cni:
+      name: none
+  proxy:
+    disabled: true
