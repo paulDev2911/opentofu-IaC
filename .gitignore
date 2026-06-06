@@ -1,0 +1,12 @@
+# opentofu / terraform
+**/.terraform/
+**/.terraform.lock.hcl
+*.tfstate
+*.tfstate.backup
+.terraform.tfstate.lock.info
+crash.log
+
+# secrets
+*.tfvars
+*.tfvars.json
+secrets/
