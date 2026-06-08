@@ -50,7 +50,7 @@ resource "talos_machine_configuration_apply" "controlplane" {
         network_gateway                   = var.network_gateway
         vip_shared_ip                     = var.cluster_vip_shared_ip
         allow_scheduling_on_controlplanes = var.allow_scheduling_on_controlplanes
-        cilium_manifest = file("${path.module}/cilium.yaml")
+        cilium_manifest = data.helm_template.cilium.manifest
         }),
     ],
     var.talos_config_patch_controlplane != "" ? [var.talos_config_patch_controlplane] : []
